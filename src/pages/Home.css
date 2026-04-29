@@ -1,0 +1,149 @@
+/* ==============================================
+   Home Page — NotebookLM Inspired
+   ============================================== */
+
+.home {
+    padding-bottom: var(--space-24);
+}
+
+/* --- Hero --- */
+.hero {
+    text-align: center;
+    padding: var(--space-24) 0 var(--space-16);
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    /* For positioning pseudo-element glows */
+}
+
+/* Ambient Glow - Left */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+    filter: blur(60px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Ambient Glow - Right */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(138, 180, 248, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    filter: blur(60px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero__heading {
+    font-size: var(--text-display);
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    padding: 0 0.05em;
+}
+
+.hero__highlight {
+    background: linear-gradient(135deg, #1A73E8 0%, #4285F4 50%, #8AB4F8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-style: italic;
+    padding-right: 0.15em;
+}
+
+.hero__subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    margin: 0 auto var(--space-4);
+    line-height: var(--leading-relaxed);
+}
+
+.hero__micro {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    letter-spacing: 0.01em;
+    margin: 0 auto var(--space-8);
+}
+
+.hero__cta {
+    display: flex;
+    justify-content: center;
+}
+
+/* --- Staggered Fade-Up Animation --- */
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero__animate {
+    opacity: 0;
+    animation: heroFadeUp 0.5s ease-out forwards;
+}
+
+/* Headline first */
+.hero__animate--1 {
+    animation-delay: 0.1s;
+}
+
+/* Subheading second */
+.hero__animate--2 {
+    animation-delay: 0.25s;
+}
+
+/* Micro-line third */
+.hero__animate--3 {
+    animation-delay: 0.4s;
+}
+
+/* CTA last */
+.hero__animate--4 {
+    animation-delay: 0.55s;
+}
+
+/* --- Tablet --- */
+@media (max-width: 1024px) {
+    .hero {
+        padding: var(--space-16) var(--space-4) var(--space-12);
+    }
+}
+
+/* --- Mobile --- */
+@media (max-width: 640px) {
+    .hero {
+        padding: var(--space-12) var(--space-4) var(--space-8);
+    }
+
+    .hero__heading {
+        font-size: var(--text-4xl);
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-base);
+        max-width: 100%;
+    }
+}

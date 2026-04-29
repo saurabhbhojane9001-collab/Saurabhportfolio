@@ -1,0 +1,27 @@
+.work {
+    padding: var(--space-16) 0 var(--space-24);
+}
+
+.work__header {
+    margin-bottom: var(--space-12);
+}
+
+.work__title {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+}
+
+.work__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    line-height: var(--leading-relaxed);
+}
+
+.work__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
