@@ -1,35 +1,51 @@
 import Tag from '../components/common/Tag';
 import './About.css';
 
-const designSkills = [
-    'UX Research', 'Interaction Design', 'Information Architecture',
-    'Process & Workflow Design', 'Design Systems', 'Prototyping', 'User Testing',
+const skillsData = [
+    {
+        category: 'Design & Prototyping',
+        skills: [
+            'Figma', 'FigJam', 'Adobe XD', 'Information Architecture',
+            'Wireframing', 'Data Visualization', 'Multi-Step Workflows'
+        ]
+    },
+    {
+        category: 'AI Tools',
+        skills: [
+            'Anthropic Claude AI', 'ChatGPT', 'Cursor AI', 'Figma AI',
+            'Lovable AI', 'Readdy AI', 'Antigravity'
+        ]
+    },
+    {
+        category: 'Technical / Frontend',
+        skills: [
+            'Angular (Basic)', 'React (Basic)', 'HTML', 'CSS'
+        ]
+    }
 ];
 
-const tools = ['Figma', 'React', 'TypeScript'];
-
 const stats = [
-    { value: '3+', label: 'Years of Product Design' },
-    { value: '5+', label: 'End-to-end products shipped' },
-    { value: '4', label: 'User roles & workflows designed' },
-    { value: '2', label: 'Business domains impacted: Procurement & Logistics' },
+    { value: '3+', label: 'Years in UI/UX Design' },
+    { value: 'Zero to Launch', label: 'End-to-end features delivered' },
+    { value: 'B2B', label: 'Enterprise Applications' },
+    { value: '3', label: 'Domains: Supply Chain, Procurement & Finance' },
 ];
 
 const pillars = [
     {
         icon: '🔍',
-        title: 'Research-Driven',
-        desc: 'I root every decision in user research, stakeholder interviews, and process audits — not assumptions.',
+        title: 'Research & Strategy',
+        desc: 'I conduct user research and stakeholder interviews to uncover pain points and define actionable UX strategies for internal platforms.',
     },
     {
         icon: '🏗️',
-        title: 'Systems Thinking',
-        desc: 'I design for ecosystems — multi-role platforms, scalable patterns, and workflows that hold up at scale.',
+        title: 'Systems & Workflows',
+        desc: 'I architect workflow infrastructure and reduce cognitive load across multi-role enterprise systems, transforming complex processes into streamlined workflows.',
     },
     {
-        icon: '🚀',
-        title: 'Outcome-Focused',
-        desc: 'I measure success in operational efficiency, error reduction, and decisions made faster by the people using the product.',
+        icon: '🤝',
+        title: 'Engineering Collaboration',
+        desc: 'I collaborate directly with frontend developers to ensure seamless technical implementation and design feasibility from zero to launch.',
     },
 ];
 
@@ -40,11 +56,10 @@ export default function About() {
             {/* ── Hero Section ── */}
             <section className="about__hero">
                 <div className="about__hero-text">
-                    <span className="about__hero-eyebrow">Product Designer</span>
+                    <span className="about__hero-eyebrow">UI/UX Designer</span>
                     <h1 className="about__hero-name">Saurabh Bhojane</h1>
                     <p className="about__hero-tagline">
-                        Designing end-to-end product experiences by aligning business goals,
-                        <br />user needs, and scalable systems.
+                        Transforming data-heavy, multi-role systems into intuitive interfaces.
                     </p>
                     <div className="about__hero-ctas">
                         <a
@@ -86,16 +101,11 @@ export default function About() {
             <section className="about__section about__section--bordered">
                 <h2 className="about__section-title">Who I am</h2>
                 <p className="about__bio">
-                    I'm a Product Designer specialising in complex B2B and operational
-                    platforms. My work spans procurement systems, supplier relationship management,
-                    and logistics tools — driving product decisions, defining workflows, and
-                    building scalable system architecture.
+                    I'm a Product-focused UI/UX Designer with 3+ years of experience specializing in complex
+                    B2B enterprise applications across supply chain, procurement, and finance.
                 </p>
                 <p className="about__bio">
-                    I've had the opportunity to work on large-scale platforms at Jio — including
-                    Jio World Centre's operations platform and Jio's internal procurement suite.
-                    Working closely with Business, Tech, and Functional teams, my design decisions
-                    have directly shaped how hundreds of internal users work every day.
+                    I have a proven ability to transform data-heavy, multi-role systems into intuitive interfaces, taking features from zero to launch while collaborating closely with engineering teams. I've had the opportunity to work on large-scale platforms at Jio Platforms (JPL), focusing on supplier relationship, vendor onboarding, and warehouse management systems.
                 </p>
             </section>
 
@@ -117,22 +127,16 @@ export default function About() {
             <section className="about__section about__section--bordered">
                 <h2 className="about__section-title">Skills & Tools</h2>
                 <div className="about__skills-container">
-                    <div className="about__skills-group">
-                        <h3 className="about__skills-group-label">Design Skills</h3>
-                        <div className="about__skills-list">
-                            {designSkills.map((skill) => (
-                                <Tag key={skill} label={skill} />
-                            ))}
+                    {skillsData.map((group) => (
+                        <div key={group.category} className="about__skills-group">
+                            <h3 className="about__skills-group-label">{group.category}</h3>
+                            <div className="about__skills-list">
+                                {group.skills.map((skill) => (
+                                    <Tag key={skill} label={skill} />
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    <div className="about__skills-group">
-                        <h3 className="about__skills-group-label">Tools</h3>
-                        <div className="about__skills-list">
-                            {tools.map((tool) => (
-                                <Tag key={tool} label={tool} />
-                            ))}
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </section>
 
