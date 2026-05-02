@@ -48,13 +48,13 @@ export default function About() {
                     </p>
                     <div className="about__hero-ctas">
                         <a
-                            href="mailto:saurabh@example.com"
+                            href="mailto:saurabhbhojane9001@gmail.com"
                             className="about__cta about__cta--primary"
                         >
                             Get in touch
                         </a>
                         <a
-                            href="https://www.linkedin.com/in/saurabh-bhojane"
+                            href="https://linkedin.com/in/saurabh-bhojane-a466b2266"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="about__cta about__cta--secondary"
@@ -143,7 +143,7 @@ export default function About() {
                     stakeholder alignment, and system design to build tools teams can rely on.
                 </p>
                 <a
-                    href="mailto:saurabh@example.com"
+                    href="mailto:saurabhbhojane9001@gmail.com"
                     className="about__cta about__cta--primary"
                 >
                     Let's talk →

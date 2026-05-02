@@ -8,10 +8,10 @@ export default function Footer() {
                     &copy; {new Date().getFullYear()} Saurabh Bhojane
                 </p>
                 <nav className="footer__links">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://linkedin.com/in/saurabh-bhojane-a466b2266" target="_blank" rel="noopener noreferrer">
                         LinkedIn
                     </a>
-                    <a href="mailto:hello@example.com">Email</a>
+                    <a href="mailto:saurabhbhojane9001@gmail.com">Email</a>
                 </nav>
             </div>
         </footer>
