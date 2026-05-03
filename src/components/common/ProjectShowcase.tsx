@@ -43,12 +43,12 @@ export const showcaseProjects: ShowcaseProject[] = [
     {
         id: 'supplier-onboarding',
         icon: <SupplierIcon />,
-        title: 'Supplier Relationship Management Platform',
+        title: 'Supplier Relationship & Vendor Onboarding',
         description:
-            'Designed an enterprise SRM platform from scratch to streamline supplier onboarding, compliance, and multi-level approvals.',
+            'Led end-to-end UX for a unified B2B supplier platform — launched to 500+ suppliers, reducing onboarding time by 78% and accelerating approvals by 5×.',
         supporting:
-            'A buyer- and supplier-facing system enabling faster onboarding, better governance, and reduced manual effort at scale.',
-        tags: ['Enterprise', 'B2B', 'Supplier Onboarding', 'Governance'],
+            'Architected workflow infrastructure with AI-suggested forms, automated AML compliance checks, and multi-level approval routing replacing manual email tracking.',
+        tags: ['Enterprise', 'B2B', 'Supplier Onboarding', 'Compliance'],
         visual: {
             type: 'image',
             src: '/images/srm-platform-preview.png',
@@ -57,12 +57,12 @@ export const showcaseProjects: ShowcaseProject[] = [
     {
         id: 'jio-world-centre',
         icon: <OperationsIcon />,
-        title: 'Operations & Logistics Platform for Jio World Centre',
+        title: 'Warehouse Management System (WMS)',
         description:
-            'Designed a multi-role enterprise platform to manage logistics, access control, and real-time operations for large-scale, high-footfall events.',
+            'Architected the user experience for end-to-end warehouse logistics — covering inbound/outbound operations, goods receipt, picking, packing, and dispatch.',
         supporting:
-            'Enabled real-time booking, bay allocation, and on-ground execution workflows for operators, administrators, and exhibitors at India\'s largest convention centre.',
-        tags: ['Product Design', 'Operations', 'Logistics', 'Multi-role Platform', 'Workflow Design'],
+            'Designed configuration-driven master data management interfaces and optimized data-heavy dashboards for real-time visibility and decision-making.',
+        tags: ['Product Design', 'WMS', 'Logistics', 'Data Visualization', 'Scalable Systems'],
         visual: {
             type: 'video',
             src: '/portfolio video.mp4',
