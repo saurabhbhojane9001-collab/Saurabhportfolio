@@ -4,19 +4,37 @@
     border-radius: var(--radius-lg);
     padding: var(--space-8);
     cursor: pointer;
-    transition: transform var(--transition-base),
-        box-shadow var(--transition-base),
-        border-color var(--transition-base);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s ease;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--space-6);
+    position: relative;
+}
+
+/* Gradient border glow */
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: calc(var(--radius-lg) + 1px);
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.2), rgba(99, 102, 241, 0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-border-subtle);
+    box-shadow: 0 12px 32px -8px rgba(26, 115, 232, 0.1);
+    border-color: rgba(26, 115, 232, 0.12);
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .card:focus-visible {
@@ -33,6 +51,11 @@
     font-weight: var(--weight-semibold);
     color: var(--color-text);
     margin-bottom: var(--space-2);
+    transition: color 0.3s ease;
+}
+
+.card:hover .card__title {
+    color: var(--color-accent);
 }
 
 .card__description {
@@ -51,13 +74,13 @@
 .card__arrow {
     font-size: var(--text-xl);
     color: var(--color-text-muted);
-    transition: transform var(--transition-fast),
-        color var(--transition-fast);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.3s ease;
     flex-shrink: 0;
     margin-top: var(--space-1);
 }
 
 .card:hover .card__arrow {
-    transform: translateX(4px);
-    color: var(--color-text);
+    transform: translateX(6px);
+    color: var(--color-accent);
 }

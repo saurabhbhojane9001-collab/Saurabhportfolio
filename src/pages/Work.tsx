@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import { showcaseProjects } from '../components/common/ProjectShowcase';
 import Tag from '../components/common/Tag';
 import '../components/common/ProjectShowcase.css'; // Reusing the same styles
@@ -6,10 +7,12 @@ import './Work.css';
 
 export default function Work() {
     const navigate = useNavigate();
+    const { setRevealRef } = useScrollReveal();
 
     return (
         <div className="work">
-            <header className="work__header">
+            <header className="work__header" ref={setRevealRef}>
+                <span className="work__eyebrow">Portfolio</span>
                 <h1 className="work__title">Work</h1>
                 <p className="work__description">
                     A curated set of enterprise and B2B projects focused on system design,
@@ -18,10 +21,12 @@ export default function Work() {
             </header>
 
             <div className="showcase__list" style={{ marginTop: 'var(--space-8)' }}>
-                {showcaseProjects.map((project) => (
+                {showcaseProjects.map((project, index) => (
                     <article
                         key={project.id}
                         className="showcase__project"
+                        ref={setRevealRef}
+                        style={{ transitionDelay: `${index * 0.15}s` }}
                         onClick={() => navigate(`/case-study/${project.id}`)}
                         role="link"
                         tabIndex={0}

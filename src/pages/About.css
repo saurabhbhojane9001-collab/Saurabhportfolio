@@ -1,5 +1,5 @@
 /* ==============================================
-   About Page — Premium Redesign
+   About Page — Stripe-Inspired Premium
    ============================================== */
 
 .about {
@@ -79,21 +79,39 @@
     font-size: var(--text-sm);
     font-weight: var(--weight-semibold);
     text-decoration: none;
-    transition: all var(--transition-base);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer effect */
+.about__cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.about__cta:hover::after {
+    left: 100%;
 }
 
 .about__cta--primary {
-    background-color: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-accent) 0%, #4F46E5 100%);
     color: #ffffff;
-    border: 1.5px solid var(--color-accent);
+    border: 1.5px solid transparent;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.2);
 }
 
 .about__cta--primary:hover {
-    background-color: var(--color-accent-hover);
-    border-color: var(--color-accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26, 115, 232, 0.3);
 }
 
 .about__cta--secondary {
@@ -105,7 +123,8 @@
 .about__cta--secondary:hover {
     border-color: var(--color-accent);
     color: var(--color-accent);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.08);
 }
 
 /* ── Profile Photo ── */
@@ -137,9 +156,14 @@
     position: absolute;
     inset: 0;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--color-accent-subtle) 0%, var(--color-bg-card) 100%);
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.08) 0%, rgba(99, 102, 241, 0.06) 50%, var(--color-bg-card) 100%);
     transform: translate(8px, 8px);
     z-index: 0;
+    transition: transform 0.4s ease;
+}
+
+.about__hero-photo-wrap:hover::before {
+    transform: translate(12px, 12px);
 }
 
 .about__hero-photo {
@@ -152,6 +176,12 @@
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border-subtle);
     background-color: var(--color-bg-subtle);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about__hero-photo-wrap:hover .about__hero-photo {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 /* ── Stats Bar ── */
@@ -163,7 +193,20 @@
     padding: var(--space-8) var(--space-6);
     background-color: var(--color-bg-subtle);
     border: 1px solid var(--color-border-subtle);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient top accent */
+.about__stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), rgba(99, 102, 241, 0.6), rgba(168, 85, 247, 0.4), transparent);
 }
 
 @media (min-width: 640px) {
@@ -180,7 +223,7 @@
     gap: var(--space-1);
     padding: var(--space-4) var(--space-2);
     border-right: 1px solid var(--color-border-subtle);
-    transition: transform var(--transition-base);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .about__stat:last-child {
@@ -188,7 +231,7 @@
 }
 
 .about__stat:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .about__stat-value {
@@ -197,6 +240,11 @@
     letter-spacing: -0.03em;
     color: var(--color-accent);
     line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.about__stat:hover .about__stat-value {
+    transform: scale(1.08);
 }
 
 .about__stat-label {
@@ -217,6 +265,19 @@
 .about__section--bordered {
     padding-top: var(--space-8);
     border-top: 1px solid var(--color-border);
+    position: relative;
+}
+
+/* Gradient border accent */
+.about__section--bordered::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), rgba(99, 102, 241, 0.4));
+    border-radius: 1px;
 }
 
 .about__section-title {
@@ -256,19 +317,45 @@
     padding: var(--space-6);
     background-color: var(--color-bg-subtle);
     border: 1px solid var(--color-border-subtle);
-    border-radius: var(--radius-md);
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    border-radius: var(--radius-lg);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient glow */
+.about__pillar-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: calc(var(--radius-lg) + 1px);
+    background: linear-gradient(135deg, rgba(26, 115, 232, 0.15), rgba(99, 102, 241, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .about__pillar-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-accent-subtle);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(26, 115, 232, 0.08);
+    border-color: rgba(26, 115, 232, 0.12);
+}
+
+.about__pillar-card:hover::before {
+    opacity: 1;
 }
 
 .about__pillar-icon {
     font-size: 1.75rem;
     line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.about__pillar-card:hover .about__pillar-icon {
+    transform: scale(1.15) rotate(-5deg);
 }
 
 .about__pillar-title {
@@ -313,6 +400,18 @@
     padding: var(--space-8) 0 var(--space-4);
     border-top: 1px solid var(--color-border);
     gap: var(--space-6);
+    position: relative;
+}
+
+.about__closing-section::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), rgba(99, 102, 241, 0.4));
+    border-radius: 1px;
 }
 
 .about__closing {

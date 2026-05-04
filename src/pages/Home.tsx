@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Button from '../components/common/Button';
 import ProjectShowcase from '../components/common/ProjectShowcase';
 import './Home.css';
@@ -7,6 +8,27 @@ export default function Home() {
         const section = document.getElementById('selected-work');
         section?.scrollIntoView({ behavior: 'smooth' });
     };
+
+    /* ── Cursor Glow Effect ── */
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
+            document.documentElement.style.setProperty('--cursor-opacity', '1');
+        };
+
+        const handleMouseLeave = () => {
+            document.documentElement.style.setProperty('--cursor-opacity', '0');
+        };
+
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        document.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
 
     return (
         <div className="home">

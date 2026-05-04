@@ -7,24 +7,53 @@
     font-weight: var(--weight-medium);
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-pill);
-    transition: background-color var(--transition-fast),
-        color var(--transition-fast),
-        box-shadow var(--transition-fast);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Primary — solid black, white text */
+/* ── Shimmer sweep animation ── */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* Primary — gradient dark with accent */
 .btn--primary {
-    background-color: var(--color-text);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1A73E8 200%);
     color: var(--color-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .btn--primary:hover {
-    background-color: #333;
-    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, #2d2d2d 0%, #1A73E8 100%);
+    box-shadow: 0 6px 20px rgba(26, 115, 232, 0.25);
+    transform: translateY(-2px);
 }
 
-/* Secondary — outlined */
+.btn--primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+}
+
+/* Secondary — outlined with subtle fill on hover */
 .btn--secondary {
     background-color: transparent;
     color: var(--color-text);
@@ -32,6 +61,13 @@
 }
 
 .btn--secondary:hover {
-    border-color: var(--color-text);
-    background-color: var(--color-bg-subtle);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background-color: rgba(26, 115, 232, 0.04);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.08);
+    transform: translateY(-2px);
+}
+
+.btn--secondary:active {
+    transform: translateY(0);
 }

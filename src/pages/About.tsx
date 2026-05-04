@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import Tag from '../components/common/Tag';
 import './About.css';
 
@@ -50,11 +51,13 @@ const pillars = [
 ];
 
 export default function About() {
+    const { setRevealRef } = useScrollReveal();
+
     return (
         <div className="about">
 
             {/* ── Hero Section ── */}
-            <section className="about__hero">
+            <section className="about__hero" ref={setRevealRef}>
                 <div className="about__hero-text">
                     <span className="about__hero-eyebrow">UI/UX Designer</span>
                     <h1 className="about__hero-name">Saurabh Bhojane</h1>
@@ -88,9 +91,9 @@ export default function About() {
             </section>
 
             {/* ── Stats Bar ── */}
-            <section className="about__stats">
-                {stats.map((s) => (
-                    <div key={s.label} className="about__stat">
+            <section className="about__stats" ref={setRevealRef}>
+                {stats.map((s, i) => (
+                    <div key={s.label} className="about__stat" style={{ transitionDelay: `${i * 0.1}s` }}>
                         <span className="about__stat-value">{s.value}</span>
                         <span className="about__stat-label">{s.label}</span>
                     </div>
@@ -98,7 +101,7 @@ export default function About() {
             </section>
 
             {/* ── Bio ── */}
-            <section className="about__section about__section--bordered">
+            <section className="about__section about__section--bordered" ref={setRevealRef}>
                 <h2 className="about__section-title">Who I am</h2>
                 <p className="about__bio">
                     I'm a Product-focused UI/UX Designer with 3+ years of experience specializing in complex
@@ -110,11 +113,11 @@ export default function About() {
             </section>
 
             {/* ── What I Do Pillars ── */}
-            <section className="about__section about__section--bordered">
+            <section className="about__section about__section--bordered" ref={setRevealRef}>
                 <h2 className="about__section-title">How I work</h2>
                 <div className="about__pillars">
-                    {pillars.map((p) => (
-                        <div key={p.title} className="about__pillar-card">
+                    {pillars.map((p, i) => (
+                        <div key={p.title} className="about__pillar-card" ref={setRevealRef} style={{ transitionDelay: `${i * 0.1}s` }}>
                             <span className="about__pillar-icon">{p.icon}</span>
                             <h3 className="about__pillar-title">{p.title}</h3>
                             <p className="about__pillar-desc">{p.desc}</p>
@@ -124,7 +127,7 @@ export default function About() {
             </section>
 
             {/* ── Skills & Tools ── */}
-            <section className="about__section about__section--bordered">
+            <section className="about__section about__section--bordered" ref={setRevealRef}>
                 <h2 className="about__section-title">Skills & Tools</h2>
                 <div className="about__skills-container">
                     {skillsData.map((group) => (
@@ -141,7 +144,7 @@ export default function About() {
             </section>
 
             {/* ── Closing CTA ── */}
-            <section className="about__section about__closing-section">
+            <section className="about__section about__closing-section" ref={setRevealRef}>
                 <p className="about__closing">
                     I enjoy solving complex business problems that matter — combining product thinking,
                     stakeholder alignment, and system design to build tools teams can rely on.

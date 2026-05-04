@@ -1,5 +1,5 @@
 /* ==============================================
-   Header — NotebookLM Inspired
+   Header — Glassmorphic Stripe-Inspired
    ============================================== */
 
 .header {
@@ -7,12 +7,19 @@
     top: 0;
     z-index: 100;
     height: 80px;
-    background-color: var(--color-bg);
+    background-color: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .header--scrolled {
-    /* NotebookLM uses no border or shadow on scroll — 
-       pure white separates naturally from content */
+    background-color: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
 }
 
 .header__inner {
@@ -25,35 +32,37 @@
     justify-content: space-between;
 }
 
-/* Logo / Wordmark
-   NotebookLM: 18px, weight 400, black, no hover effect */
+/* Logo / Wordmark */
 .header__logo {
     font-size: 1.125rem;
-    font-weight: var(--weight-regular);
-    letter-spacing: -0.01em;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.02em;
     color: #000000;
+    transition: opacity var(--transition-fast);
 }
 
-/* Navigation
-   Right-aligned, generous spacing */
+.header__logo:hover {
+    opacity: 0.7;
+}
+
+/* Navigation */
 .header__nav {
     display: flex;
     gap: var(--space-8);
     align-items: center;
 }
 
-/* Nav Links
-   NotebookLM: 16px, weight 500, black */
+/* Nav Links */
 .header__link {
     font-size: 1rem;
     font-weight: var(--weight-medium);
-    color: #000000;
+    color: var(--color-text-secondary);
     padding: var(--space-2) 0;
     position: relative;
-    transition: color var(--transition-fast);
+    transition: color 0.3s ease;
 }
 
-/* Active underline — 2px black, like NotebookLM "Overview" */
+/* Active underline — gradient accent */
 .header__link::after {
     content: '';
     position: absolute;
@@ -61,8 +70,9 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #000000;
-    transition: width var(--transition-fast);
+    background: linear-gradient(90deg, var(--color-accent), #8AB4F8);
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .header__link:hover {
@@ -75,6 +85,7 @@
 
 .header__link--active {
     color: #000000;
+    font-weight: var(--weight-semibold);
 }
 
 .header__link--active::after {
@@ -90,11 +101,13 @@
 
 .header__external-icon {
     opacity: 0.5;
-    transition: opacity var(--transition-fast);
+    transition: opacity var(--transition-fast),
+        transform 0.3s ease;
 }
 
 .header__link--external:hover .header__external-icon {
     opacity: 1;
+    transform: translate(1px, -1px);
 }
 
 /* ==============================================
@@ -166,7 +179,9 @@
         top: 64px;
         left: 0;
         right: 0;
-        background-color: var(--color-bg);
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
         flex-direction: column;
         gap: 0;
         padding: var(--space-6) var(--space-6);
@@ -174,8 +189,8 @@
         transform: translateY(-100%);
         opacity: 0;
         pointer-events: none;
-        transition: transform var(--transition-base),
-            opacity var(--transition-base);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .header__nav--open {

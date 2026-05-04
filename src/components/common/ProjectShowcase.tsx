@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 import { useInViewCenter } from '../../hooks/useInViewCenter';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import Tag from './Tag';
 import './ProjectShowcase.css';
 
@@ -74,6 +75,7 @@ export const showcaseProjects: ShowcaseProject[] = [
 export default function ProjectShowcase() {
     const navigate = useNavigate();
     const { setRef, activeIndex } = useInViewCenter(showcaseProjects.length);
+    const { setRevealRef } = useScrollReveal();
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
     /* ── Video play/pause based on active state ── */
@@ -90,7 +92,7 @@ export default function ProjectShowcase() {
 
     return (
         <section id="selected-work" className="showcase">
-            <header className="showcase__header">
+            <header className="showcase__header" ref={setRevealRef}>
                 <h2 className="showcase__section-title">Selected Projects</h2>
                 <p className="showcase__section-subtitle">
                     End-to-end product design work solving complex operational and
@@ -105,7 +107,10 @@ export default function ProjectShowcase() {
                     return (
                         <article
                             key={project.id}
-                            ref={setRef(index)}
+                            ref={(el) => {
+                                setRef(index)(el);
+                                setRevealRef(el);
+                            }}
                             className={`showcase__project ${isActive ? 'showcase__project--active' : 'showcase__project--inactive'}`}
                             onClick={() => navigate(`/case-study/${project.id}`)}
                             role="link"

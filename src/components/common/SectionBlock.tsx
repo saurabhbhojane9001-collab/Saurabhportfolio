@@ -58,31 +58,25 @@ function ImpactIcon({ type, color }: { type: string; color: string }) {
     }
 }
 
-function ImpactCard({ item, index }: { item: ImpactItem; index: number }) {
+function ImpactRow({ item, index }: { item: ImpactItem; index: number }) {
     const config = impactIconConfig[item.icon] || { color: '#64748B', bg: '#F1F5F9', gradient: 'linear-gradient(135deg, #94A3B8, #64748B)' };
     return (
-        <div className="impact-card" style={{ '--accent': config.color, '--accent-bg': config.bg, '--accent-gradient': config.gradient, animationDelay: `${index * 0.1}s` } as React.CSSProperties}>
-            {/* Top accent bar */}
-            <div className="impact-card__accent" style={{ background: config.gradient }} />
-            
-            {/* Icon badge */}
-            <div className="impact-card__icon-badge" style={{ backgroundColor: config.bg }}>
-                <ImpactIcon type={item.icon} color={config.color} />
+        <div className="impact-row" style={{ '--accent': config.color, '--accent-bg': config.bg, '--accent-gradient': config.gradient, animationDelay: `${index * 0.1}s` } as React.CSSProperties}>
+            {/* Left: metric */}
+            <div className="impact-row__left">
+                <div className="impact-row__icon-badge" style={{ backgroundColor: config.bg }}>
+                    <ImpactIcon type={item.icon} color={config.color} />
+                </div>
+                <div className="impact-row__metric" style={{ color: config.color }}>
+                    {item.metric}
+                </div>
             </div>
 
-            {/* Metric — hero of the card */}
-            <div className="impact-card__metric" style={{ color: config.color }}>
-                {item.metric}
+            {/* Right: label + description */}
+            <div className="impact-row__right">
+                <span className="impact-row__label">{item.label}</span>
+                <p className="impact-row__description">{item.description}</p>
             </div>
-
-            {/* Label */}
-            <div className="impact-card__label">{item.label}</div>
-
-            {/* Divider */}
-            <div className="impact-card__divider" style={{ backgroundColor: config.bg }} />
-
-            {/* Description */}
-            <p className="impact-card__description">{item.description}</p>
         </div>
     );
 }
@@ -129,11 +123,11 @@ export default function SectionBlock({ section }: SectionBlockProps) {
                 </div>
             )}
 
-            {/* Impact Cards */}
+            {/* Impact Metrics */}
             {section.impactItems && section.impactItems.length > 0 && (
-                <div className="impact-grid">
+                <div className="impact-list">
                     {section.impactItems.map((item, i) => (
-                        <ImpactCard key={i} item={item} index={i} />
+                        <ImpactRow key={i} item={item} index={i} />
                     ))}
                 </div>
             )}

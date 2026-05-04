@@ -7,4 +7,15 @@
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-pill);
     letter-spacing: 0.01em;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: default;
+}
+
+.tag:hover {
+    background-color: rgba(26, 115, 232, 0.08);
+    color: var(--color-accent);
+    border-color: rgba(26, 115, 232, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.06);
 }
