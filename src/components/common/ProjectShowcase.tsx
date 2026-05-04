@@ -57,12 +57,12 @@ export const showcaseProjects: ShowcaseProject[] = [
     {
         id: 'jio-world-centre',
         icon: <OperationsIcon />,
-        title: 'Warehouse Management System (WMS)',
+        title: 'Operations & Logistics Platform — Jio World Centre',
         description:
-            'Architected the user experience for end-to-end warehouse logistics — covering inbound/outbound operations, goods receipt, picking, packing, and dispatch.',
+            'Designed a centralized operations platform to digitize end-to-end event logistics, managing real-time vehicle tracking (in-out) and bay allocation at India\'s largest convention venue.',
         supporting:
-            'Designed configuration-driven master data management interfaces and optimized data-heavy dashboards for real-time visibility and decision-making.',
-        tags: ['Product Design', 'WMS', 'Logistics', 'Data Visualization', 'Scalable Systems'],
+            'Architected multi-role workflows and optimized data-heavy dashboards to replace manual coordination, ensuring 100% real-time visibility during high-footfall events.',
+        tags: ['Product Design', 'Operations', 'Vehicle Tracking', 'Logistics', 'Scalable Systems'],
         visual: {
             type: 'video',
             src: '/portfolio video.mp4',

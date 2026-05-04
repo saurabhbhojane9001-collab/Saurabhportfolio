@@ -6,10 +6,12 @@ import Home from './pages/Home';
 import Work from './pages/Work';
 import CaseStudy from './pages/CaseStudy';
 import About from './pages/About';
+import ScrollToTop from './components/common/ScrollToTop';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Container>
         <Routes>
