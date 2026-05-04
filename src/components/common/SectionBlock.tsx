@@ -107,9 +107,11 @@ export default function SectionBlock({ section }: SectionBlockProps) {
                         const colors = personaColors[persona.name] || defaultPersonaColor;
                         return (
                             <div key={i} className="persona-card" style={{ borderColor: colors.accent }}>
-                                <div className="persona-card__avatar" style={{ backgroundColor: colors.bg, color: colors.text }}>
-                                    {persona.name.charAt(0)}
-                                </div>
+                                <img 
+                                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(persona.name)}&backgroundColor=${colors.bg.replace('#', '')}`}
+                                    alt={`${persona.name} Avatar`}
+                                    className="persona-card__avatar"
+                                />
                                 <div className="persona-card__info">
                                     <h4 className="persona-card__name">{persona.name}</h4>
                                     <span className="persona-card__role" style={{ backgroundColor: colors.bg, color: colors.text }}>
