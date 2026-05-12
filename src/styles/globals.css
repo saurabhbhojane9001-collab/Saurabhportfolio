@@ -14,6 +14,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,6 +25,9 @@ body {
   background-color: var(--color-bg);
   position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;  /* prevent iOS font scaling */
+  text-size-adjust: 100%;
 }
 
 /* Stripe-inspired subtle mesh gradient overlay */

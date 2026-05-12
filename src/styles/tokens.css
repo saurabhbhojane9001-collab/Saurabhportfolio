@@ -94,3 +94,23 @@
     --transition-base: 250ms ease;
     --transition-slow: 400ms ease;
 }
+
+/* ── Responsive token overrides ── */
+@media (max-width: 480px) {
+    :root {
+        --text-display: 2.25rem;   /* 36px on very small screens */
+        --text-4xl:     2rem;      /* 32px */
+        --text-3xl:     1.625rem;  /* 26px */
+        --text-2xl:     1.25rem;   /* 20px */
+        --space-24:     4rem;      /* tighten large vertical gaps */
+        --space-32:     6rem;
+        --header-height: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --space-24: 5rem;
+        --space-32: 7rem;
+    }
+}

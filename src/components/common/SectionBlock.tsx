@@ -58,25 +58,36 @@ function ImpactIcon({ type, color }: { type: string; color: string }) {
     }
 }
 
-function ImpactRow({ item, index }: { item: ImpactItem; index: number }) {
+function ImpactCard({ item, index }: { item: ImpactItem; index: number }) {
     const config = impactIconConfig[item.icon] || { color: '#64748B', bg: '#F1F5F9', gradient: 'linear-gradient(135deg, #94A3B8, #64748B)' };
     return (
-        <div className="impact-row" style={{ '--accent': config.color, '--accent-bg': config.bg, '--accent-gradient': config.gradient, animationDelay: `${index * 0.1}s` } as React.CSSProperties}>
-            {/* Left: metric */}
-            <div className="impact-row__left">
-                <div className="impact-row__icon-badge" style={{ backgroundColor: config.bg }}>
+        <div
+            className="impact-card"
+            style={{
+                '--impact-color': config.color,
+                '--impact-bg': config.bg,
+                '--impact-gradient': config.gradient,
+                animationDelay: `${index * 0.1}s`
+            } as React.CSSProperties}
+        >
+            {/* Top: icon badge + metric */}
+            <div className="impact-card__top">
+                <div className="impact-card__icon-wrap">
                     <ImpactIcon type={item.icon} color={config.color} />
                 </div>
-                <div className="impact-row__metric" style={{ color: config.color }}>
+                <div className="impact-card__metric" style={{ color: config.color }}>
                     {item.metric}
                 </div>
             </div>
 
-            {/* Right: label + description */}
-            <div className="impact-row__right">
-                <span className="impact-row__label">{item.label}</span>
-                <p className="impact-row__description">{item.description}</p>
+            {/* Bottom: label + description */}
+            <div className="impact-card__body">
+                <span className="impact-card__label">{item.label}</span>
+                <p className="impact-card__description">{item.description}</p>
             </div>
+
+            {/* Accent bar */}
+            <div className="impact-card__accent-bar" style={{ background: config.gradient }} />
         </div>
     );
 }
@@ -127,9 +138,9 @@ export default function SectionBlock({ section }: SectionBlockProps) {
 
             {/* Impact Metrics */}
             {section.impactItems && section.impactItems.length > 0 && (
-                <div className="impact-list">
+                <div className="impact-grid">
                     {section.impactItems.map((item, i) => (
-                        <ImpactRow key={i} item={item} index={i} />
+                        <ImpactCard key={i} item={item} index={i} />
                     ))}
                 </div>
             )}

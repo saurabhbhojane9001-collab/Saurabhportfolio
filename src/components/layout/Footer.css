@@ -93,4 +93,28 @@
         gap: var(--space-4);
         text-align: center;
     }
+
+    .footer__links {
+        gap: var(--space-4);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer {
+        padding: var(--space-8) 0 var(--space-6);
+    }
+
+    .footer__copy {
+        font-size: var(--text-xs);
+    }
+
+    .footer__links {
+        gap: var(--space-3);
+    }
+
+    .footer__links a {
+        font-size: var(--text-xs);
+    }
 }

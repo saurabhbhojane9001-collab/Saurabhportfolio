@@ -1,26 +1,96 @@
+import React from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import Tag from '../components/common/Tag';
 import './About.css';
 
-const skillsData = [
+interface SkillItem {
+    name: string;
+    icon?: string;
+}
+
+interface SkillCategory {
+    category: string;
+    icon: React.ReactNode;
+    accent: string;
+    skills: SkillItem[];
+}
+
+
+
+const skillsData: SkillCategory[] = [
     {
-        category: 'Design & Prototyping',
+        category: 'Core UX & UI Design',
+        accent: '#1a73e8',
+        icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+        ),
         skills: [
-            'Figma', 'FigJam', 'Adobe XD', 'Information Architecture',
-            'Wireframing', 'Data Visualization', 'Multi-Step Workflows'
+            { name: 'Figma', icon: 'https://cdn.simpleicons.org/figma' },
+            { name: 'FigJam', icon: 'https://cdn.simpleicons.org/figma' },
+            { name: 'Adobe XD', icon: 'https://cdn.simpleicons.org/adobexd' },
+            { name: 'Interaction Design' },
+            { name: 'Wireframing & Prototyping' },
+            { name: 'Design Systems' },
+            { name: 'Visual Design' },
+            { name: 'Agile UX' }
+        ]
+    },
+    {
+        category: 'UX Research & Strategy',
+        accent: '#7c3aed',
+        icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        ),
+        skills: [
+            { name: 'User Research' },
+            { name: 'Usability Testing' },
+            { name: 'Information Architecture' },
+            { name: 'User Journeys' },
+            { name: 'Persona Development' },
+            { name: 'A/B Testing' },
+            { name: 'Data Visualization' }
         ]
     },
     {
         category: 'AI Tools',
+        accent: '#059669',
+        icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+        ),
         skills: [
-            'Anthropic Claude AI', 'ChatGPT', 'Cursor AI', 'Figma AI',
-            'Lovable AI', 'Readdy AI', 'Antigravity'
+            { name: 'Anthropic Claude AI', icon: 'https://cdn.simpleicons.org/anthropic' },
+            { name: 'ChatGPT', icon: 'https://cdn.simpleicons.org/openai' },
+            { name: 'Cursor AI', icon: 'https://cdn.simpleicons.org/cursor' },
+            { name: 'Figma AI', icon: 'https://cdn.simpleicons.org/figma' },
+            { name: 'Lovable AI' },
+            { name: 'Readdy AI' },
+            { name: 'Antigravity' }
         ]
     },
     {
         category: 'Technical / Frontend',
+        accent: '#b45309',
+        icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+            </svg>
+        ),
         skills: [
-            'Angular (Basic)', 'React (Basic)', 'HTML', 'CSS'
+            { name: 'Angular (Basic)', icon: 'https://cdn.simpleicons.org/angular' },
+            { name: 'React (Basic)', icon: 'https://cdn.simpleicons.org/react' },
+            { name: 'HTML', icon: 'https://cdn.simpleicons.org/html5' },
+            { name: 'CSS', icon: 'https://cdn.simpleicons.org/css3' }
         ]
     }
 ];
@@ -130,12 +200,28 @@ export default function About() {
             <section className="about__section about__section--bordered" ref={setRevealRef}>
                 <h2 className="about__section-title">Skills & Tools</h2>
                 <div className="about__skills-container">
-                    {skillsData.map((group) => (
-                        <div key={group.category} className="about__skills-group">
-                            <h3 className="about__skills-group-label">{group.category}</h3>
+                    {skillsData.map((group, gi) => (
+                        <div
+                            key={group.category}
+                            className={`about__skills-group${gi === skillsData.length - 1 ? ' about__skills-group--wide' : ''}`}
+                            style={{
+                                '--group-accent': group.accent,
+                                transitionDelay: `${gi * 0.08}s`
+                            } as React.CSSProperties}
+                            ref={setRevealRef}
+                        >
+                            <div className="about__skills-group-header">
+                                <span
+                                    className="about__skills-group-icon"
+                                    style={{ color: group.accent }}
+                                >
+                                    {group.icon}
+                                </span>
+                                <h3 className="about__skills-group-label">{group.category}</h3>
+                            </div>
                             <div className="about__skills-list">
                                 {group.skills.map((skill) => (
-                                    <Tag key={skill} label={skill} />
+                                    <Tag key={skill.name} label={skill.name} icon={skill.icon} accent={group.accent} />
                                 ))}
                             </div>
                         </div>

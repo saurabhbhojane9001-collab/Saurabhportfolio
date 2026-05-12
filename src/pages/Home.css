@@ -265,17 +265,19 @@
    Responsive
    ───────────────────────────────────────────── */
 
-/* Tablet */
+/* Large tablet */
 @media (max-width: 1024px) {
     .hero {
-        padding: var(--space-16) var(--space-4) var(--space-12);
+        padding: var(--space-16) var(--space-6) var(--space-12);
+        max-width: 680px;
     }
 }
 
-/* Mobile */
-@media (max-width: 640px) {
+/* Tablet */
+@media (max-width: 768px) {
     .hero {
         padding: var(--space-12) var(--space-4) var(--space-8);
+        max-width: 100%;
     }
 
     .hero__heading {
@@ -287,9 +289,61 @@
         max-width: 100%;
     }
 
+    .hero__cta {
+        gap: var(--space-3);
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .hero {
+        padding: var(--space-12) var(--space-4) var(--space-8);
+    }
+
+    .hero__heading {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+    }
+
+    .hero__subtitle {
+        font-size: var(--text-base);
+        max-width: 100%;
+    }
+
+    .hero__cta {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .hero__resume-link {
+        width: 100%;
+        justify-content: center;
+    }
+
     .hero__orb--1,
     .hero__orb--2,
     .hero__orb--3 {
-        opacity: 0.3;
+        opacity: 0.25;
     }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+    .hero {
+        padding: var(--space-8) var(--space-3) var(--space-6);
+    }
+
+    .hero__heading {
+        font-size: 1.75rem;
+        letter-spacing: -0.02em;
+    }
+
+    .hero__badge {
+        font-size: 0.65rem;
+        padding: 6px 14px;
+    }
+
+    .hero__orb--1 { width: 280px; height: 280px; }
+    .hero__orb--2 { width: 240px; height: 240px; }
+    .hero__orb--3 { width: 200px; height: 200px; }
 }

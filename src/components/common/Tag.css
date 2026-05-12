@@ -1,21 +1,73 @@
+/* ── Tag Component ── */
+:root {
+    --tag-accent: #1a73e8;
+}
+
 .tag {
-    display: inline-block;
-    font-size: var(--text-xs);
-    font-weight: var(--weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    font-weight: 500;
     color: var(--color-text-secondary);
     background-color: var(--color-bg-card);
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-pill);
+    padding: 6px 14px;
+    border-radius: 999px;
     letter-spacing: 0.01em;
-    border: 1px solid transparent;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid var(--color-border-subtle, rgba(0,0,0,0.08));
+    transition:
+        background-color 0.22s ease,
+        color 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.22s ease;
     cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.tag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--tag-accent);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+}
+
+.tag__icon {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.22s ease, filter 0.22s ease;
+    filter: grayscale(60%) opacity(0.75);
+    position: relative;
+    z-index: 1;
+}
+
+.tag span,
+.tag {
+    position: relative;
+    z-index: 1;
 }
 
 .tag:hover {
-    background-color: rgba(26, 115, 232, 0.08);
-    color: var(--color-accent);
-    border-color: rgba(26, 115, 232, 0.15);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.06);
+    color: var(--tag-accent);
+    border-color: color-mix(in srgb, var(--tag-accent) 30%, transparent);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+        0 4px 14px color-mix(in srgb, var(--tag-accent) 18%, transparent),
+        0 1px 3px color-mix(in srgb, var(--tag-accent) 10%, transparent);
+}
+
+.tag:hover::before {
+    opacity: 0.07;
+}
+
+.tag:hover .tag__icon {
+    transform: scale(1.15);
+    filter: grayscale(0%) opacity(1);
 }

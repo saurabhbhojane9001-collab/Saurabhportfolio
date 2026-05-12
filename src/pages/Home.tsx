@@ -60,7 +60,7 @@ export default function Home() {
                 <div className="hero__cta hero__animate hero__animate--3">
                     <Button onClick={scrollToWork}>View Selected Work</Button>
                     <a
-                        href="/Saurabhdesign%20Resume%202.0.pdf"
+                        href="/Saurabh_Resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hero__resume-link"
