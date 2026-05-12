@@ -413,7 +413,7 @@ export const projects: Project[] = [
                 type: 'screens',
                 title: 'Interactive Prototype',
                 content: 'Explore the end-to-end logistics management workflows through this interactive prototype.',
-                figmaEmbedUrl: 'https://embed.figma.com/proto/NjtrcI2G0CJzuIfCADK9Px/Jio-World-Folio?node-id=1243-49126&viewport=902%2C-226%2C0.08&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1243%3A49126&page-id=1036%3A194&embed-host=share',
+                figmaEmbedUrl: 'https://embed.figma.com/proto/19r0moWfSHlEEb8fGPfAmL/Jio-World-Center--folio?node-id=1-12122&viewport=234%2C40%2C0.03&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A12122&embed-host=share',
             },
             {
                 id: 'outcomes',
