@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { CaseStudySection, ImpactItem } from '../../data/projects';
 import WorkflowDiagram from './WorkflowDiagram';
 import './SectionBlock.css';
