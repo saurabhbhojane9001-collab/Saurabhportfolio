@@ -93,44 +93,17 @@ function ImpactCard({ item, index }: { item: ImpactItem; index: number }) {
     );
 }
 
-/* ── Figma Prototype Card (always renders safely) ── */
+/* ── Figma Embed ── */
 function FigmaEmbed({ embedUrl }: { embedUrl: string }) {
-    // Convert embed URL → regular Figma prototype link
-    const protoUrl = embedUrl
-        .replace('embed.figma.com/proto', 'www.figma.com/proto')
-        .replace('embed-host=share', '')
-        .replace(/&+$/, '');
-
     return (
-        <a
-            href={protoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="figma-fallback"
-            aria-label="Open Figma Prototype"
-        >
-            {/* Figma logo */}
-            <div className="figma-fallback__logo">
-                <svg width="32" height="48" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
-                    <path d="M9.5 57A9.5 9.5 0 0 1 9.5 38H19V47.5A9.5 9.5 0 0 1 9.5 57z" fill="#0ACF83"/>
-                    <path d="M0 28.5A9.5 9.5 0 0 1 9.5 19H19V38H9.5A9.5 9.5 0 0 1 0 28.5z" fill="#A259FF"/>
-                    <path d="M0 9.5A9.5 9.5 0 0 1 9.5 0H19V19H9.5A9.5 9.5 0 0 1 0 9.5z" fill="#F24E1E"/>
-                    <path d="M19 0H28.5A9.5 9.5 0 0 1 28.5 19H19V0z" fill="#FF7262"/>
-                </svg>
-            </div>
-            <div className="figma-fallback__text">
-                <span className="figma-fallback__title">Interactive Prototype</span>
-                <span className="figma-fallback__sub">Click to explore on Figma ↗</span>
-            </div>
-            <div className="figma-fallback__arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-            </div>
-        </a>
+        <div className="section-block__figma-embed" style={{ marginTop: 'var(--space-6)' }}>
+            <iframe
+                style={{ border: '1px solid rgba(0, 0, 0, 0.1)', width: '100%', maxWidth: '800px', borderRadius: '12px' }}
+                height="450"
+                src={embedUrl}
+                allowFullScreen
+            ></iframe>
+        </div>
     );
 }
 
