@@ -70,7 +70,7 @@ export default function Header() {
             About
           </Link>
           <a
-            href="/Saurabh_Resume.pdf"
+            href="/Saurabhdesign_resume_13%20May.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="header__link header__link--external"
