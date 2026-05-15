@@ -192,3 +192,48 @@
         font-size: 1.375rem;
     }
 }
+
+/* ── Jio World Centre Roadways — scoped theme (Figma Marigold / Reliance) ── */
+.case-study--jwc-roadways {
+    --jwc-marigold: #f7ab20;
+    --jwc-marigold-deep: #ac660c;
+    --jwc-brown: #401d0c;
+    --jwc-brown-mid: #7f4b10;
+    --jwc-reliance: #0f3cc9;
+    --jwc-cream: #fef7e9;
+
+    --color-accent: var(--jwc-reliance);
+    --color-accent-hover: #0c32a8;
+    --color-accent-subtle: rgba(15, 60, 201, 0.1);
+
+    font-family: 'Plus Jakarta Sans', var(--font-sans);
+}
+
+.case-study--jwc-roadways .case-study__title {
+    color: var(--jwc-brown);
+}
+
+.case-study--jwc-roadways .case-study__subtitle {
+    color: var(--jwc-brown-mid);
+}
+
+.case-study--jwc-roadways .case-study__chip:hover {
+    background: rgba(247, 171, 32, 0.12);
+    color: var(--jwc-marigold-deep);
+    border-color: rgba(172, 102, 12, 0.25);
+}
+
+.case-study--jwc-roadways .case-study__back-link:hover {
+    color: var(--jwc-reliance);
+}
+
+.case-study--jwc-roadways .case-study__divider {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(15, 60, 201, 0.12),
+        rgba(247, 171, 32, 0.35),
+        rgba(15, 60, 201, 0.12),
+        transparent
+    );
+}

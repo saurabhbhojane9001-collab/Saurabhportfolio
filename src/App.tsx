@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Container from './components/layout/Container';
@@ -12,14 +11,9 @@ import ScrollToTop from './components/common/ScrollToTop';
 /* Page transition wrapper */
 function PageTransition({ children }: { children: React.ReactNode }) {
     const location = useLocation();
-    const [transitionKey, setTransitionKey] = useState(location.pathname);
-
-    useEffect(() => {
-        setTransitionKey(location.pathname);
-    }, [location.pathname]);
 
     return (
-        <div key={transitionKey} className="page-transition">
+        <div key={location.pathname} className="page-transition">
             {children}
         </div>
     );

@@ -37,7 +37,7 @@ export default function Header() {
 
   /* Close mobile menu on route change */
   useEffect(() => {
-    setMenuOpen(false);
+    queueMicrotask(() => setMenuOpen(false));
   }, [location.pathname]);
 
   return (

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { showcaseProjects } from '../components/common/ProjectShowcase';
+import { showcaseProjects } from '../data/showcaseProjects';
 import Tag from '../components/common/Tag';
 import '../components/common/ProjectShowcase.css'; // Reusing the same styles
 import './Work.css';

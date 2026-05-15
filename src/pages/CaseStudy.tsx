@@ -21,7 +21,9 @@ export default function CaseStudy() {
     }
 
     return (
-        <article className="case-study">
+        <article
+            className={`case-study ${project.id === 'jio-world-centre' ? 'case-study--jwc-roadways' : ''}`}
+        >
             {/* Back link */}
             <Link to="/work" className="case-study__back-link">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">

@@ -1,4 +1,5 @@
 import type { CaseStudySection, ImpactItem } from '../../data/projects';
+import MermaidFlowchart from './MermaidFlowchart';
 import WorkflowDiagram from './WorkflowDiagram';
 import './SectionBlock.css';
 
@@ -120,8 +121,11 @@ export default function SectionBlock({ section }: SectionBlockProps) {
             <h2 className="section-block__title">{section.title}</h2>
             <p className="section-block__content">{section.content}</p>
 
-            {/* Workflow Diagram */}
-            {section.workflowSteps && section.workflowSteps.length > 0 && (
+            {/* Workflow: branching Mermaid (Figma-aligned) or linear steps */}
+            {section.mermaidChart && (
+                <MermaidFlowchart chartId={section.id} chart={section.mermaidChart} />
+            )}
+            {!section.mermaidChart && section.workflowSteps && section.workflowSteps.length > 0 && (
                 <WorkflowDiagram steps={section.workflowSteps} />
             )}
 

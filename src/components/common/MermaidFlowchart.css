@@ -1,0 +1,23 @@
+.mermaid-flowchart {
+    margin-top: var(--space-6);
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-subtle);
+    padding: var(--space-4);
+    -webkit-overflow-scrolling: touch;
+}
+
+.mermaid-flowchart svg {
+    display: block;
+    max-width: none;
+    min-width: min(100%, 520px);
+    margin: 0 auto;
+}
+
+.case-study--jwc-roadways .mermaid-flowchart {
+    border-color: rgba(64, 29, 12, 0.15);
+    background: linear-gradient(180deg, #ffffff 0%, #fef7e9 100%);
+}

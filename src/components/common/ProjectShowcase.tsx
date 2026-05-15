@@ -2,75 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 import { useInViewCenter } from '../../hooks/useInViewCenter';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { showcaseProjects } from '../../data/showcaseProjects';
 import Tag from './Tag';
 import './ProjectShowcase.css';
-
-/* ── Inline SVG Icons ── */
-const SupplierIcon = () => (
-    <svg className="showcase__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-);
-
-const OperationsIcon = () => (
-    <svg className="showcase__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1" />
-        <rect x="14" y="3" width="7" height="7" rx="1" />
-        <rect x="3" y="14" width="7" height="7" rx="1" />
-        <path d="M17.5 14v7" />
-        <path d="M14 17.5h7" />
-    </svg>
-);
-
-/* ── Project Data ── */
-export interface ShowcaseProject {
-    id: string;
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    supporting?: string;
-    tags: string[];
-    visual: {
-        type: 'image' | 'video';
-        src: string;
-        poster?: string;
-    };
-}
-
-export const showcaseProjects: ShowcaseProject[] = [
-    {
-        id: 'supplier-onboarding',
-        icon: <SupplierIcon />,
-        title: 'Supplier Relationship & Vendor Onboarding',
-        description:
-            'Led end-to-end UX for a unified B2B supplier platform — launched to 500+ suppliers, reducing onboarding time by 78% and accelerating approvals by 5×.',
-        supporting:
-            'Architected workflow infrastructure with AI-suggested forms, automated AML compliance checks, and multi-level approval routing replacing manual email tracking.',
-        tags: ['Enterprise', 'B2B', 'Supplier Onboarding', 'Compliance'],
-        visual: {
-            type: 'image',
-            src: '/images/srm-platform-preview.png',
-        },
-    },
-    {
-        id: 'jio-world-centre',
-        icon: <OperationsIcon />,
-        title: 'Operations & Logistics Platform — Jio World Centre',
-        description:
-            'Designed a centralized operations platform to digitize end-to-end event logistics, managing real-time vehicle tracking (in-out) and bay allocation at India\'s largest convention venue.',
-        supporting:
-            'Architected multi-role workflows and optimized data-heavy dashboards to replace manual coordination, ensuring 100% real-time visibility during high-footfall events.',
-        tags: ['Product Design', 'Operations', 'Vehicle Tracking', 'Logistics', 'Scalable Systems'],
-        visual: {
-            type: 'video',
-            src: '/portfolio video.mp4',
-            poster: '/images/jwc-operations-preview.png',
-        },
-    },
-];
 
 export default function ProjectShowcase() {
     const navigate = useNavigate();

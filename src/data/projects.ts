@@ -3,6 +3,11 @@
    ============================================== */
 
 import type { WorkflowStep } from '../components/common/WorkflowDiagram';
+import {
+    ADMINISTRATOR_FLOW_MERMAID,
+    EXHIBITOR_FLOW_MERMAID,
+    OPERATOR_FLOW_MERMAID,
+} from './jioRoadwaysMermaid';
 
 export interface ImpactItem {
     icon: 'speed' | 'accuracy' | 'visibility' | 'compliance' | 'unified' | 'approvals' | 'transparency' | 'conflicts' | 'turnaround' | 'selfservice' | 'audit';
@@ -20,6 +25,8 @@ export interface CaseStudySection {
     bullets?: string[];
     placeholders?: { label: string; description?: string }[];
     workflowSteps?: WorkflowStep[];
+    /** Branching user-flow diagram (Mermaid source). When set, shown instead of linear workflowSteps. */
+    mermaidChart?: string;
     impactItems?: ImpactItem[];
     figmaEmbedUrl?: string;
 }
@@ -241,209 +248,166 @@ export const projects: Project[] = [
     },
     {
         id: 'jio-world-centre',
-        title: 'Operations & Logistics Platform for Jio World Centre',
-        subtitle: 'Designed a multi-role enterprise platform to manage logistics, access control, and real-time operations for large-scale, high-footfall events.',
+        title: 'Jio World Centre — Roadways',
+        subtitle: 'Logistics and vehicle movement for high-footfall events: digital check-in, bay scheduling, and real-time coordination across operators, admins, and exhibitors.',
         description:
-            'Designed a centralized operations platform to digitize end-to-end event logistics — from bay configuration and exhibitor bookings to real-time vehicle check-in/check-out at one of India\'s largest convention venues.',
-        tags: ['Product Design', 'Operations', 'Logistics', 'Multi-role Platform', 'Workflow Design'],
+            'Roadways replaces ad-hoc calls and spreadsheets with a tablet-first experience at the gate and clear admin control over events, bays, and traffic — so teams can track arrivals, departures, and loading activity when the venue is at full capacity.',
+        tags: ['Product Design', 'Roadways', 'Logistics', 'Tablet UX', 'Jio World Centre'],
         role: 'Product Designer',
         duration: '6+ months',
-        platform: 'Enterprise Web (Desktop-first, tablet-supported)',
+        platform: 'Tablet-first at gate · Admin desktop',
         users: 'Operators, Administrators, Exhibitors',
         sections: [
             {
                 id: 'overview',
                 type: 'overview',
                 title: 'Context',
-                content: 'Jio World Centre hosts concurrent large-scale events (exhibitions, conventions, trade shows) across multiple halls, each demanding complex, real-time logistics coordination for vehicle movement, bay allocation, and exhibitor material handling — all on shared infrastructure with strict time windows.',
+                content:
+                    'Jio World Centre runs concurrent large-scale events across multiple halls and parking levels. Exhibitors rely on private transport to move assets in and out on tight windows. Roadways is the digital layer for that reality: scheduling, gate check-in/out, and visibility when traffic and loading bays are under peak pressure.',
             },
             {
                 id: 'problem',
                 type: 'problem',
-                title: 'What Was Broken',
-                content: 'Logistics coordination relied entirely on phone calls, WhatsApp groups, and spreadsheets — severely lacking real-time visibility and causing cascading failures during high-footfall events.',
+                title: 'Problem statement',
+                content:
+                    'During move-in and move-out, the venue sees high volumes of vehicles competing for limited loading bays and time slots. Manual coordination made it hard to know which vehicle was cleared to enter, which bay was free, and whether a slot was still valid — increasing wait times, gate friction, and risk of double-booking. The organisation needed a single system of record for vehicle movement instead of fragmented phone and chat follow-ups.',
                 bullets: [
-                    'Zero centralized tracking for loading-bay availability, vehicle status, or exhibitor material movement.',
-                    'Manual bay allocation caused frequent double-bookings and conflicts during peak move-in/move-out hours.',
-                    'Exhibitors had no self-service visibility into slot availability or check-in status, creating constant friction with the operations team.',
-                    'No audit trail — post-event reporting was manual and error-prone.',
+                    'No single place to see today\'s bookings, gate status, and bay occupancy together.',
+                    'Hard to prove who arrived, when they checked out, and which bay was in use — weak audit trail.',
+                    'Exhibitors lacked self-serve ways to book, adjust, and track their own slots.',
+                ],
+            },
+            {
+                id: 'observations',
+                type: 'goals',
+                title: 'Observations',
+                content: 'Field research and stakeholder workshops surfaced constraints that any solution had to respect.',
+                bullets: [
+                    'Jio World Centre supports multi-level parking and overlapping events — capacity is shared, not siloed.',
+                    'Exhibitors depend on private transport; scheduling and gate rules must align with real arrival patterns.',
+                    'Operations needs proactive tracking and scheduling during heavy traffic, not reactive firefighting.',
+                    'Advance planning and clear handoffs between admin, exhibitor, and operator are essential for safe, efficient logistics.',
+                ],
+            },
+            {
+                id: 'purpose',
+                type: 'approach',
+                title: 'Purpose',
+                content:
+                    'The product vision split into a primary outcome for the business and supporting outcomes for day-to-day operations.',
+                bullets: [
+                    'Major: streamline check-in and check-out for transportation vehicles at the venue.',
+                    'Minor: real-time tracking of vehicles and bays, smoother traffic at loading points, and data-backed decisions for operations.',
                 ],
             },
             {
                 id: 'role',
                 type: 'role',
-                title: 'My Role & Key Decisions',
-                content: 'I drove product decisions and system architecture for the operations platform, focused directly on solving handoff bottlenecks and reducing cognitive load during high-pressure, time-critical execution.',
+                title: 'My role & key decisions',
+                content:
+                    'I owned UX for Roadways end-to-end: discovery with on-ground staff, journey mapping across three roles, IA for operator tablet flows, and alignment with engineering on status models and edge cases.',
                 bullets: [
-                    'Mapped end-to-end logistics journeys across 3 distinct system personas — Admin, Exhibitor, and Operator.',
-                    'Solved real-time tracking chaos by defining a strict Booked → Checked-in → On-hold → Completed status model.',
-                    'Designed a dual-interface approach: desktop dashboards for admins + tablet-optimized views for loading-bay operators.',
-                    'Collaborated closely with on-ground JWC operators and facility managers to validate every workflow against operational reality.',
+                    'Defined a strict lifecycle for bookings and bays (booked → checked-in → on-hold / in progress → checked-out) so every screen reflected the same truth.',
+                    'Separated operator tablet tasks (fast, interruptible) from admin planning tasks (dense, analytical) without splitting the product into two unrelated apps.',
+                    'Validated flows with facility and events teams so terminology and steps matched how gates and bays are actually run.',
                 ],
             },
             {
                 id: 'personas',
                 type: 'personas',
-                title: 'Target Users',
-                content: 'The platform serves three distinct user roles, each with fundamentally different goals and operational contexts.',
+                title: 'Personas',
+                content: 'Three roles anchor the system; each has different goals, devices, and time pressure at the venue.',
                 personas: [
                     {
+                        name: 'Operator',
+                        role: '28 yrs · Stock controller',
+                        description:
+                            'Runs check-in and check-out at the gate and loading bays. Cares about speed, accuracy, and safety — needs large touch targets, minimal typing, and obvious next actions when queues form.',
+                    },
+                    {
                         name: 'Administrator',
-                        role: 'Event Setup & Hall Management',
-                        description: 'Configures events, manages hall/bay layouts, defines time slots, and oversees the entire logistics pipeline. Needs full visibility and control across all concurrent events.',
+                        role: '42 yrs · MBA · Events & facilities',
+                        description:
+                            'Sets up events, halls, and bay layouts; monitors traffic and utilisation. Needs dashboards to configure the venue and spot bottlenecks before they hit the gate.',
                     },
                     {
                         name: 'Exhibitor',
-                        role: 'Booking & Vehicle Tracking',
-                        description: 'Books loading/unloading slots, registers vehicles and materials, submits AMC & utility requests, and tracks real-time check-in status. Needs self-service access and transparency.',
-                    },
-                    {
-                        name: 'Operator',
-                        role: 'On-Ground Bay Management',
-                        description: 'Manages vehicle check-in/check-out at loading bays, handles real-time queue management, and resolves conflicts. Operates under extreme time pressure using tablet devices.',
+                        role: '35 yrs · Business / booth lead',
+                        description:
+                            'Books loading slots, declares vehicles and material needs, and tracks status of their own bookings. Wants transparency and self-service changes without calling operations.',
                     },
                 ],
             },
             {
-                id: 'approach',
-                type: 'approach',
-                title: 'Approach',
-                content: 'We used a systems-first approach to identify critical handoff failure modes between the three user roles. Every UI decision prioritized action-first interactions and unambiguous status tracking to prevent errors under time pressure.',
-                bullets: [
-                    'Designed role-bound dashboards with clear ownership logic — each persona sees only what they need to act on.',
-                    'Desktop-first design for admins, coupled with a tablet-optimized interface for loading-bay operators.',
-                    'Implemented proactive conflict detection — system flags overlapping slot bookings and bay assignments before they escalate.',
-                    'Built a unified status cascade: when an operator completes a check-out, the system auto-updates exhibitor view and admin dashboard simultaneously.',
-                ],
+                id: 'target-device',
+                type: 'overview',
+                title: 'Target device',
+                content:
+                    'The operator experience is designed for tablet: portable at the gate and loading dock, readable in daylight, and suited to intermittent Wi‑Fi. Bluetooth and wireless peripherals can support scanners or printers where the venue deploys them. Admins primarily use desktop for configuration and monitoring; exhibitors can use phone or laptop for booking, with layouts that stay usable on smaller viewports.',
             },
             {
-                id: 'workflow',
+                id: 'workflow-operator',
                 type: 'workflow',
-                title: 'End-to-End Workflow',
-                content: 'The operations pipeline orchestrates 12 interconnected steps across Admin, Exhibitor, Operator, and System roles — from initial event setup through real-time bay operations to event closure and audit.',
-                workflowSteps: [
-                    {
-                        id: 'jwc-1',
-                        label: 'Event Creation & Hall Configuration',
-                        description: 'Admin creates a new event, assigns halls, and defines the operational parameters — capacity, dates, move-in/move-out windows.',
-                        owner: 'Admin',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-2',
-                        label: 'Bay Layout Setup & Slot Definition',
-                        description: 'Admin configures loading bay layouts per hall and defines available time slots for exhibitor bookings.',
-                        owner: 'Admin',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-3',
-                        label: 'Exhibitor Access & Booking Portal',
-                        description: 'System opens the self-service booking portal for exhibitors. Exhibitors receive access credentials and can browse available slots.',
-                        owner: 'System',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-4',
-                        label: 'Vehicle & Material Registration',
-                        description: 'Exhibitor registers vehicle details (type, number, driver info) and material inventory for each booked slot.',
-                        owner: 'Exhibitor',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-5',
-                        label: 'AMC & Utility Request Submission',
-                        description: 'Exhibitor submits requests for AMC services (electricity, water, internet) and special utility needs tied to their booth setup.',
-                        owner: 'Exhibitor',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-6',
-                        label: 'Booking Review & Approval',
-                        description: 'Admin reviews exhibitor bookings and slot requests. System flags conflicts (overlapping slots, capacity breaches). Admin approves, modifies, or rejects.',
-                        owner: 'Admin',
-                        type: 'decision',
-                    },
-                    {
-                        id: 'jwc-7',
-                        label: 'Vehicle Check-in & Bay Assignment',
-                        description: 'Operator receives the vehicle at the loading bay, verifies registration, and assigns a specific bay slot. Status changes to Checked-in.',
-                        owner: 'Operator',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-8',
-                        label: 'Real-Time Bay Monitoring & Conflict Detection',
-                        description: 'System continuously monitors bay occupancy, queue lengths, and slot adherence. Proactive alerts sent for overruns, conflicts, and delays.',
-                        owner: 'System',
-                        type: 'parallel',
-                    },
-                    {
-                        id: 'jwc-9',
-                        label: 'Loading/Unloading Execution',
-                        description: 'Operator monitors the loading/unloading process. Can place vehicles On-hold if delays occur, freeing the bay for the next in queue.',
-                        owner: 'Operator',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-10',
-                        label: 'Vehicle Check-out & Bay Release',
-                        description: 'Operator completes check-out once material transfer is done. Bay is released back to the available pool and status cascades to all stakeholders.',
-                        owner: 'Operator',
-                        type: 'process',
-                    },
-                    {
-                        id: 'jwc-11',
-                        label: 'Status Cascade & Notifications',
-                        description: 'System auto-updates exhibitor dashboard, admin overview, and operator queue. All stakeholders receive real-time notifications on status changes.',
-                        owner: 'System',
-                        type: 'success',
-                    },
-                    {
-                        id: 'jwc-12',
-                        label: 'Event Closure & Audit Summary',
-                        description: 'Admin closes the event after all vehicles are checked out. System generates audit report — total vehicles processed, average turnaround time, conflicts resolved.',
-                        owner: 'Admin',
-                        type: 'end',
-                    },
-                ],
+                title: 'Operator flow',
+                content:
+                    'Primary path for gate and bay staff: today’s work queue, gate verification, check-in and check-out, and live bay awareness. Branching flow matches the Roadways operator diagram in Figma.',
+                mermaidChart: OPERATOR_FLOW_MERMAID,
+            },
+            {
+                id: 'workflow-administrator',
+                type: 'workflow',
+                title: 'Administrator flow',
+                content:
+                    'Planning and oversight: events, site layout, bays, and live monitoring. Branching flow matches the administrator diagram in Figma.',
+                mermaidChart: ADMINISTRATOR_FLOW_MERMAID,
+            },
+            {
+                id: 'workflow-exhibitor',
+                type: 'workflow',
+                title: 'Exhibitor flow',
+                content:
+                    'Self-service booking and lifecycle of the exhibitor\'s own slots. Branching flow matches the exhibitor diagram in Figma.',
+                mermaidChart: EXHIBITOR_FLOW_MERMAID,
             },
             {
                 id: 'screens',
                 type: 'screens',
-                title: 'Interactive Prototype',
-                content: 'Explore the end-to-end logistics management workflows through this interactive prototype.',
-                figmaEmbedUrl: 'https://embed.figma.com/proto/19r0moWfSHlEEb8fGPfAmL/Jio-World-Center--folio?node-id=1-12122&viewport=234%2C40%2C0.03&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A12122&embed-host=share',
+                title: 'Interactive prototype',
+                content:
+                    'Use the embedded Figma prototype to walk through the tablet and venue flows with the original starting point.',
+                figmaEmbedUrl:
+                    'https://embed.figma.com/proto/19r0moWfSHlEEb8fGPfAmL/Jio-World-Center--folio?node-id=1-12122&viewport=234%2C40%2C0.03&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A12122&embed-host=share',
             },
             {
                 id: 'outcomes',
                 type: 'outcomes',
                 title: 'Impact',
-                content: 'The centralized platform successfully replaced fragmented manual tracking and eliminated coordination chaos during high-footfall events.',
+                content:
+                    'Roadways aimed to remove ambiguity at the gate and give every role the same operational picture — reducing manual coordination while improving traceability.',
                 impactItems: [
                     {
                         icon: 'conflicts',
                         metric: '0',
                         label: 'Booking Conflicts',
-                        description: 'Proactive detection eliminated 100% of day-of bay allocation failures and double-bookings.',
+                        description: 'Structured slots and bay rules prevented double-booking at peak move-in/out.',
                     },
                     {
                         icon: 'turnaround',
                         metric: '3×',
                         label: 'Faster Turnaround',
-                        description: 'System-driven bay availability and queue management dramatically reduced vehicle wait times.',
+                        description: 'Clear check-in/out and bay visibility shortened queues versus manual coordination.',
                     },
                     {
                         icon: 'selfservice',
                         metric: '80%',
                         label: 'Fewer Queries',
-                        description: 'Exhibitor self-service portal eliminated the majority of inbound operations team queries.',
+                        description: 'Exhibitor self-service cut repetitive status calls to the operations desk.',
                     },
                     {
                         icon: 'audit',
                         metric: 'Auto',
-                        label: 'Audit Reports',
-                        description: 'Post-event reporting — vehicles processed, turnaround times, conflicts resolved — fully automated.',
+                        label: 'Audit Trail',
+                        description: 'Vehicle and bay history captured digitally for post-event reporting.',
                     },
                 ],
             },

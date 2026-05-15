@@ -677,3 +677,35 @@
         font-size: 1rem;
     }
 }
+
+/* ── JWC Roadways case study — warm accents (only under .case-study--jwc-roadways) ── */
+.case-study--jwc-roadways .section-block__title::before {
+    background: linear-gradient(180deg, var(--jwc-reliance, #0f3cc9), rgba(247, 171, 32, 0.85));
+}
+
+.case-study--jwc-roadways .section-block:hover {
+    border-top-color: rgba(15, 60, 201, 0.12);
+}
+
+.case-study--jwc-roadways .section-block__list-item::before {
+    background: linear-gradient(135deg, var(--jwc-reliance, #0f3cc9), rgba(247, 171, 32, 0.75));
+}
+
+.case-study--jwc-roadways .section-block--personas .persona-card {
+    border-color: rgba(64, 29, 12, 0.22) !important;
+    background: linear-gradient(165deg, #ffffff 0%, var(--jwc-cream, #fef7e9) 100%);
+}
+
+.case-study--jwc-roadways .section-block--personas .persona-card__role {
+    background-color: rgba(247, 171, 32, 0.2) !important;
+    color: var(--jwc-brown-mid, #7f4b10) !important;
+}
+
+.case-study--jwc-roadways .section-block--personas .persona-card__name {
+    color: var(--jwc-brown, #401d0c);
+}
+
+.case-study--jwc-roadways .section-block__figma-embed:hover {
+    border-color: rgba(15, 60, 201, 0.2);
+    box-shadow: 0 8px 32px rgba(15, 60, 201, 0.08);
+}
