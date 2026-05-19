@@ -152,20 +152,28 @@
     }
 }
 
-/* Subtle decorative backdrop */
+/* Violet glow ring behind photo */
 .about__hero-photo-wrap::before {
     content: '';
     position: absolute;
-    inset: 0;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, rgba(26, 115, 232, 0.08) 0%, rgba(99, 102, 241, 0.06) 50%, var(--color-bg-card) 100%);
-    transform: translate(8px, 8px);
+    inset: -6px;
+    border-radius: calc(var(--radius-lg) + 8px);
+    background: conic-gradient(
+        from 180deg,
+        rgba(124,106,250,0.5),
+        rgba(96,165,250,0.3),
+        rgba(124,106,250,0.1),
+        rgba(124,106,250,0.5)
+    );
     z-index: 0;
-    transition: transform 0.4s ease;
+    opacity: 0.7;
+    transition: opacity 0.4s ease, inset 0.4s ease;
+    filter: blur(2px);
 }
 
 .about__hero-photo-wrap:hover::before {
-    transform: translate(12px, 12px);
+    opacity: 1;
+    inset: -8px;
 }
 
 .about__hero-photo {
@@ -183,7 +191,7 @@
 
 .about__hero-photo-wrap:hover .about__hero-photo {
     transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(124, 106, 250, 0.25), 0 8px 24px rgba(0,0,0,0.5);
 }
 
 /* ── Stats Bar ── */

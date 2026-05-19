@@ -7,6 +7,8 @@ import Work from './pages/Work';
 import CaseStudy from './pages/CaseStudy';
 import About from './pages/About';
 import ScrollToTop from './components/common/ScrollToTop';
+import CursorGlow from './components/common/CursorGlow';
+import ScrollProgressBar from './components/common/ScrollProgressBar';
 
 /* Page transition wrapper */
 function PageTransition({ children }: { children: React.ReactNode }) {
@@ -22,6 +24,8 @@ function PageTransition({ children }: { children: React.ReactNode }) {
 export default function App() {
     return (
         <BrowserRouter>
+            <CursorGlow />
+            <ScrollProgressBar />
             <ScrollToTop />
             <Header />
             <Container>

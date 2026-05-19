@@ -1,0 +1,76 @@
+/* ==============================================
+   Design Philosophy Section
+   ============================================== */
+
+.design-philosophy {
+    padding: var(--space-16) var(--space-4);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.design-philosophy::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.08) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.design-philosophy__title {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: var(--weight-bold);
+    color: var(--color-accent);
+    margin-bottom: var(--space-6);
+}
+
+.design-philosophy__quote {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-6) 0;
+    letter-spacing: -0.02em;
+}
+
+.design-philosophy__highlight {
+    color: transparent;
+    background: linear-gradient(135deg, #1A73E8 0%, #6366F1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-style: italic;
+}
+
+.design-philosophy__text {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: var(--leading-relaxed);
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .design-philosophy {
+        padding: var(--space-12) var(--space-4);
+    }
+
+    .design-philosophy__quote {
+        font-size: var(--text-2xl);
+    }
+
+    .design-philosophy__text {
+        font-size: var(--text-base);
+    }
+}

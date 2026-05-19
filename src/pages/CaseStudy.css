@@ -1,239 +1,361 @@
-/* ==============================================
-   Case Study Page — Stripe-Inspired Premium
-   ============================================== */
+/* ═══════════════════════════════════════════════════
+   Case Study v2 — Enterprise Recruiter Layout
+   Structure: Problem → Complexity → Approach →
+              UX Decisions → Impact
+   ═══════════════════════════════════════════════════ */
 
-.case-study {
-    padding: var(--space-16) var(--space-6) var(--space-32);
-    width: 100%;
-    max-width: 860px;
-    margin: 0 auto;
+/* ── Root ── */
+.case-study-v2 {
+    background: var(--color-bg);
+    min-height: 100vh;
 }
 
 .case-study--not-found {
     text-align: center;
-    padding: var(--space-24) 0;
+    padding: 6rem 2rem;
     max-width: 100%;
 }
 
-.case-study--not-found h1 {
-    font-size: var(--text-3xl);
-    margin-bottom: var(--space-4);
-}
-
-.case-study--not-found p {
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-6);
-}
-
 /* ── Back link ── */
-.case-study__back-link {
+.cs-back-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-size: var(--text-sm);
-    font-weight: var(--weight-medium);
+    gap: 7px;
+    font-size: 0.8rem;
+    font-weight: 500;
     color: var(--color-text-muted);
-    margin-bottom: var(--space-12);
-    transition: color 0.3s ease, transform 0.3s ease, gap 0.3s ease;
+    margin-bottom: 2rem;
+    transition: color 0.2s, gap 0.2s;
     letter-spacing: 0.01em;
 }
 
-.case-study__back-link:hover {
+.cs-back-link:hover {
     color: var(--color-accent);
-    gap: 8px;
+    gap: 10px;
 }
 
-.case-study__back-link svg {
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+.cs-back-link svg { transition: transform 0.2s; }
+.cs-back-link:hover svg { transform: translateX(-3px); }
+
+/* ── Hero ── */
+.cs-hero {
+    padding: 5rem 2rem 3.5rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    position: relative;
+    overflow: hidden;
 }
 
-.case-study__back-link:hover svg {
-    transform: translateX(-3px);
+.cs-hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(124,106,250,0.06) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-/* ── Hero Header ── */
-.case-study__header {
-    margin-bottom: var(--space-12);
+.cs-hero__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
 }
 
-/* Meta chips row */
-.case-study__meta-chips {
+.cs-hero__chips {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-6);
+    gap: 6px;
+    margin-bottom: 1.5rem;
 }
 
-.case-study__chip {
-    display: inline-flex;
-    align-items: center;
-    font-size: var(--text-xs);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-secondary);
-    background: var(--color-bg-card);
-    padding: 5px 14px;
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--color-border-subtle);
-    letter-spacing: 0.01em;
-    transition: all 0.3s ease;
-}
-
-.case-study__chip:hover {
-    background: rgba(26, 115, 232, 0.06);
-    color: var(--color-accent);
-    border-color: rgba(26, 115, 232, 0.15);
-    transform: translateY(-1px);
-}
-
-.case-study__title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: var(--weight-bold);
-    letter-spacing: -0.025em;
-    line-height: var(--leading-tight);
-    margin-bottom: var(--space-4);
-    color: var(--color-text);
-}
-
-.case-study__description {
-    font-size: var(--text-lg);
-    color: var(--color-text-secondary);
-    line-height: var(--leading-relaxed);
-    max-width: 72ch;
-}
-
-.case-study__subtitle {
-    font-size: var(--text-base);
+.cs-chip {
+    font-size: 0.7rem;
+    font-weight: 600;
     color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-    max-width: 72ch;
-    margin-top: var(--space-3);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 4px 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cs-hero__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin-bottom: 1.125rem;
+}
+
+.cs-hero__description {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    max-width: 68ch;
+    margin-bottom: 0.75rem;
+}
+
+.cs-hero__subtitle {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 68ch;
+    margin-bottom: 2.5rem;
     font-style: italic;
 }
 
-/* ── Divider — gradient style ── */
-.case-study__divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-border), rgba(26, 115, 232, 0.15), var(--color-border), transparent);
-    margin: 0 0 var(--space-8);
-    border: none;
+/* ── Quick stat bar ── */
+.cs-stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
 }
 
-/* ── Body sections ── */
-.case-study__body {
+.cs-stat {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 3px;
 }
 
-/* --- Responsive --- */
+.cs-stat__value {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.cs-stat__label {
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.cs-stat__divider {
+    width: 1px;
+    height: 32px;
+    background: var(--color-border);
+    flex-shrink: 0;
+}
+
+/* ── Divider ── */
+.cs-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,106,250,0.2), transparent);
+}
+
+/* ── Layout: sidebar + content ── */
+.cs-layout {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 4rem 2rem 8rem;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* ── Sidebar ── */
+.cs-sidebar {
+    position: sticky;
+    top: 96px;
+}
+
+.cs-sidebar__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.cs-sidebar__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.cs-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cs-nav__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-align: left;
+    width: 100%;
+    transition: color 0.2s, background 0.2s;
+}
+
+.cs-nav__item:hover {
+    color: var(--color-text-secondary);
+    background: rgba(255,255,255,0.04);
+}
+
+.cs-nav__item--active {
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    font-weight: 600;
+}
+
+.cs-nav__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-border);
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.cs-nav__item--active .cs-nav__dot {
+    background: var(--color-accent);
+    transform: scale(1.4);
+}
+
+/* ── Section reveal ── */
+.cs-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+
+.cs-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Individual section ── */
+.cs-section {
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    margin-bottom: 4rem;
+    scroll-margin-top: 96px;
+}
+
+.cs-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Section label pill */
+.cs-section__label-row {
+    margin-bottom: 1.25rem;
+}
+
+.cs-section__label {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    border: 1px solid rgba(124,106,250,0.2);
+    border-radius: 6px;
+    padding: 4px 12px;
+}
+
+/* ── JWC theme override ── */
+.case-study--jwc {
+    --color-accent: #0f3cc9;
+    --color-accent-hover: #0c32a8;
+    --color-accent-subtle: rgba(15,60,201,0.08);
+}
+
+.case-study--jwc .cs-hero__title {
+    background: linear-gradient(130deg, #ffffff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
 @media (max-width: 1024px) {
-    .case-study {
-        padding: var(--space-12) var(--space-4) var(--space-24);
+    .cs-layout {
+        grid-template-columns: 180px 1fr;
+        gap: 2.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    .case-study {
-        padding: var(--space-10) var(--space-4) var(--space-16);
-        max-width: 100%;
+    .cs-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 2rem 1.5rem 6rem;
     }
 
-    .case-study__title {
-        font-size: clamp(1.5rem, 5vw, 2rem);
+    .cs-sidebar {
+        position: static;
+        margin-bottom: 2rem;
     }
 
-    .case-study__description {
-        font-size: var(--text-base);
+    .cs-sidebar__inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
     }
 
-    .case-study__header {
-        margin-bottom: var(--space-8);
+    .cs-sidebar__label { width: 100%; }
+
+    .cs-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
     }
+
+    .cs-nav__item {
+        padding: 5px 12px;
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        font-size: 0.75rem;
+        width: auto;
+    }
+
+    .cs-nav__item--active {
+        border-color: rgba(124,106,250,0.4);
+    }
+
+    .cs-nav__dot { display: none; }
+
+    .cs-hero { padding: 3.5rem 1.5rem 2.5rem; }
+
+    .cs-stat-bar {
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .cs-section { padding-bottom: 2.5rem; margin-bottom: 2.5rem; }
 }
 
-@media (max-width: 640px) {
-    .case-study {
-        padding: var(--space-8) var(--space-3) var(--space-12);
-    }
-
-    .case-study__title {
-        font-size: var(--text-2xl);
-    }
-
-    .case-study__description {
-        font-size: var(--text-sm);
-    }
-
-    .case-study__header {
-        margin-bottom: var(--space-6);
-    }
-
-    .case-study__back-link {
-        margin-bottom: var(--space-6);
-        font-size: var(--text-xs);
-    }
-
-    .case-study__meta-chips {
-        gap: var(--space-1);
-    }
-
-    .case-study__chip {
-        font-size: 0.65rem;
-        padding: 4px 10px;
-    }
-}
-
-@media (max-width: 400px) {
-    .case-study {
-        padding: var(--space-6) var(--space-3) var(--space-8);
-    }
-
-    .case-study__title {
-        font-size: 1.375rem;
-    }
-}
-
-/* ── Jio World Centre Roadways — scoped theme (Figma Marigold / Reliance) ── */
-.case-study--jwc-roadways {
-    --jwc-marigold: #f7ab20;
-    --jwc-marigold-deep: #ac660c;
-    --jwc-brown: #401d0c;
-    --jwc-brown-mid: #7f4b10;
-    --jwc-reliance: #0f3cc9;
-    --jwc-cream: #fef7e9;
-
-    --color-accent: var(--jwc-reliance);
-    --color-accent-hover: #0c32a8;
-    --color-accent-subtle: rgba(15, 60, 201, 0.1);
-
-    font-family: 'Plus Jakarta Sans', var(--font-sans);
-}
-
-.case-study--jwc-roadways .case-study__title {
-    color: var(--jwc-brown);
-}
-
-.case-study--jwc-roadways .case-study__subtitle {
-    color: var(--jwc-brown-mid);
-}
-
-.case-study--jwc-roadways .case-study__chip:hover {
-    background: rgba(247, 171, 32, 0.12);
-    color: var(--jwc-marigold-deep);
-    border-color: rgba(172, 102, 12, 0.25);
-}
-
-.case-study--jwc-roadways .case-study__back-link:hover {
-    color: var(--jwc-reliance);
-}
-
-.case-study--jwc-roadways .case-study__divider {
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(15, 60, 201, 0.12),
-        rgba(247, 171, 32, 0.35),
-        rgba(15, 60, 201, 0.12),
-        transparent
-    );
+@media (max-width: 480px) {
+    .cs-hero { padding: 2.5rem 1.25rem 2rem; }
+    .cs-layout { padding: 1.5rem 1.25rem 4rem; }
+    .cs-stat-bar { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .cs-stat__divider { display: none; }
 }

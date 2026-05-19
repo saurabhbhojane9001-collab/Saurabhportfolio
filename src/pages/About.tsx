@@ -78,45 +78,46 @@ const skillsData: SkillCategory[] = [
         ]
     },
     {
-        category: 'Technical / Frontend',
+        category: 'Operational Systems & Platforms',
         accent: '#b45309',
         icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
+                <rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/>
             </svg>
         ),
         skills: [
-            { name: 'Angular (Basic)', icon: 'https://cdn.simpleicons.org/angular' },
-            { name: 'React (Basic)', icon: 'https://cdn.simpleicons.org/react' },
-            { name: 'HTML', icon: 'https://cdn.simpleicons.org/html5' },
-            { name: 'CSS', icon: 'https://cdn.simpleicons.org/css3' }
+            { name: 'Enterprise Workflow Design' },
+            { name: 'SAP Integration UX' },
+            { name: 'K2 Workflow Engine' },
+            { name: 'Role-based Access UX' },
+            { name: 'Multi-level Approval Flows' },
+            { name: 'WMS Platform Design' },
         ]
     }
 ];
 
 const stats = [
-    { value: '3+', label: 'Years in UI/UX Design' },
-    { value: 'Zero to Launch', label: 'End-to-end features delivered' },
-    { value: 'B2B', label: 'Enterprise Applications' },
-    { value: '3', label: 'Domains: Supply Chain, Procurement & Finance' },
+    { value: '3+', label: 'Years — Enterprise UX & Product Design' },
+    { value: '0→1', label: 'End-to-end feature delivery' },
+    { value: 'B2B SaaS', label: 'Operational & AI systems' },
+    { value: '4', label: 'Domains: Supply Chain, Procurement, Logistics & WMS' },
 ];
 
 const pillars = [
     {
         icon: '🔍',
-        title: 'Research & Strategy',
-        desc: 'I conduct user research and stakeholder interviews to uncover pain points and define actionable UX strategies for internal platforms.',
+        title: 'Enterprise UX Research',
+        desc: 'Stakeholder interviews, workflow shadowing, and field research to uncover systemic pain points in operational platforms — not just usability issues.',
     },
     {
         icon: '🏗️',
-        title: 'Systems & Workflows',
-        desc: 'I architect workflow infrastructure and reduce cognitive load across multi-role enterprise systems, transforming complex processes into streamlined workflows.',
+        title: 'Workflow Optimization & Systems Design',
+        desc: 'Mapping complex, multi-role workflows end-to-end. Reducing cognitive load. Transforming 23-step manual processes into 8-step digital flows.',
     },
     {
-        icon: '🤝',
-        title: 'Engineering Collaboration',
-        desc: 'I collaborate directly with frontend developers to ensure seamless technical implementation and design feasibility from zero to launch.',
+        icon: '🤖',
+        title: 'AI-Assisted Product Thinking',
+        desc: 'Designing AI-powered features — smart defaults, automated compliance checks, and intelligent routing — into enterprise products users actually trust.',
     },
 ];
 
@@ -129,10 +130,11 @@ export default function About() {
             {/* ── Hero Section ── */}
             <section className="about__hero" ref={setRevealRef}>
                 <div className="about__hero-text">
-                    <span className="about__hero-eyebrow">UI/UX Designer</span>
+                    <span className="about__hero-eyebrow">Enterprise Product Designer · Jio Platforms</span>
                     <h1 className="about__hero-name">Saurabh Bhojane</h1>
                     <p className="about__hero-tagline">
-                        Transforming data-heavy, multi-role systems into intuitive interfaces.
+                        Designing enterprise UX, workflow optimization,
+                        and AI-assisted operational systems.
                     </p>
                     <div className="about__hero-ctas">
                         <a
@@ -153,7 +155,7 @@ export default function About() {
                 </div>
                 <div className="about__hero-photo-wrap">
                     <img
-                        src="/IMG-20250421-WA0005__1_-removebg-preview.jpg"
+                        src="/profile-photo.png"
                         alt="Saurabh Bhojane"
                         className="about__hero-photo"
                     />
